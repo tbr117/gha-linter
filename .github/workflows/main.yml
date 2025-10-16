@@ -1,7 +1,7 @@
 name: Lint, Build and Test
 on: push
 jobs:
-  test:
+  Lint:
     runs-on: ubuntu-latest
     steps:
       - name: Get code
@@ -14,9 +14,35 @@ jobs:
         run: npm ci
       - name: Perform project linting
         run: npm run lint
+  Test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get code
+        uses: actions/checkout@v3 
+      - name: Install node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      - name: Install dependencies
+        run: npm ci
       - name: Run project tests
         run: npm run test
+  Build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get code
+        uses: actions/checkout@v3 
+      - name: Install node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      - name: Install dependencies
+        run: npm ci
       - name: Build the project
         run: npm run build
+  Deploy:
+    needs: Build
+    runs-on: ubuntu-latest
+    steps:
       - name: Deploy to production
         run: echo "Deploying to production..."
