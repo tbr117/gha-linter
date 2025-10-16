@@ -15,7 +15,7 @@ jobs:
       - name: Perform project linting
         run: npm run lint
       - name: Run project tests
-        run: npm runtest
+        run: npm run test
       - name: Build the project
         run: npm build
       - name: Deploy to production
