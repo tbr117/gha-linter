@@ -13,9 +13,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Perform project linting
-        run: npm lint
+        run: npm run lint
       - name: Run project tests
-        run: npm test
+        run: npm runtest
       - name: Build the project
         run: npm build
       - name: Deploy to production
